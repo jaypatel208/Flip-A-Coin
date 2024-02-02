@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Flip A Coin</string>
+    <string name="heads_or_tails">Heads or Tails</string>
+    <string name="flip_coin_info">Flip a coin with this virtual coin flipper, it\'s easy and lightweight.</string>
+    <string name="heads">Heads</string>
+    <string name="heads_caps">HEADS</string>
+    <string name="tails">Tails</string>
+    <string name="tails_caps">TAILS</string>
+    <string name="flip_the_coin">Flip the coin!</string>
+    <string name="touch_or_press">(touch the coin or press the button)</string>
+</resources>
