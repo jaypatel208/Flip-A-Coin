@@ -1,6 +1,8 @@
 package dev.jay.flipacoin.ui.components
 
 import android.content.Context
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -15,13 +17,16 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -86,7 +91,7 @@ fun PlayInfoText() {
 }
 
 @Composable
-fun Coin(context: Context, coinFace: CoinFace, onCoinClick: () -> Unit) {
+fun Coin(isFlipped:Boolean,context: Context, coinFace: CoinFace, onCoinClick: () -> Unit) {
     val interactionSource = remember { MutableInteractionSource() }
     Box(
         contentAlignment = Alignment.Center,
@@ -99,10 +104,19 @@ fun Coin(context: Context, coinFace: CoinFace, onCoinClick: () -> Unit) {
             interactionSource = interactionSource
         )
     ) {
+        val rotationYState by animateFloatAsState(
+            targetValue = if (isFlipped) 180f else 0f,
+            animationSpec = tween(500), label = "" // Adjust duration as needed
+        )
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(250.dp)
+                .graphicsLayer(
+                    rotationY = rotationYState,
+                    transformOrigin = TransformOrigin.Center
+                )
+
         ) {
             Canvas(modifier = Modifier.fillMaxSize()) {
                 val canvasWidth = size.width

@@ -13,10 +13,12 @@ class CoinViewModel @Inject constructor() : ViewModel() {
     private val _coinFace = mutableStateOf(CoinFace.Head)
     private val _headCount = mutableStateOf(0)
     private val _tailCount = mutableStateOf(0)
+    private val _isFlipped = mutableStateOf(false)
 
     val coinFace: State<CoinFace> = _coinFace
     val headCount: State<Int> = _headCount
     val tailCount: State<Int> = _tailCount
+    val isFlipped: State<Boolean> = _isFlipped
 
     fun flipCoin() {
         val result = Random.nextBoolean()
@@ -26,6 +28,8 @@ class CoinViewModel @Inject constructor() : ViewModel() {
             CoinFace.Head -> incrementHeadCount()
             CoinFace.Tail -> incrementTailCount()
         }
+
+        _isFlipped.value = !_isFlipped.value
     }
 
     private fun incrementHeadCount() {

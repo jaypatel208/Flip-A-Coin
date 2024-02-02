@@ -48,7 +48,12 @@ fun HomeScreen(coinViewModel: CoinViewModel = hiltViewModel()) {
             )
         }
         Spacer(modifier = Modifier.height(35.dp))
-        Coin(coinFace = coinViewModel.coinFace.value, onCoinClick = { coinViewModel.flipCoin() }, context = context)
+        Coin(
+            coinFace = coinViewModel.coinFace.value,
+            onCoinClick = { coinViewModel.flipCoin() },
+            context = context,
+            isFlipped = coinViewModel.isFlipped.value
+        )
         Spacer(modifier = Modifier.height(40.dp))
         FlipCoinButton(context = context) {
             coinViewModel.flipCoin()
