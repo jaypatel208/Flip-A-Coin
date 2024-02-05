@@ -104,16 +104,16 @@ fun Coin(isFlipped:Boolean,context: Context, coinFace: CoinFace, onCoinClick: ()
             interactionSource = interactionSource
         )
     ) {
-        val rotationYState by animateFloatAsState(
+        val rotationXState by animateFloatAsState(
             targetValue = if (isFlipped) 180f else 0f,
-            animationSpec = tween(500), label = "" // Adjust duration as needed
+            animationSpec = tween(700), label = "" // Adjust duration as needed
         )
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(250.dp)
                 .graphicsLayer(
-                    rotationY = rotationYState,
+                    rotationX = rotationXState,
                     transformOrigin = TransformOrigin.Center
                 )
 
